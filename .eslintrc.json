@@ -41,6 +41,7 @@
       "@typescript-eslint/no-shadow": "error",
       "no-useless-constructor": "off",
       "no-useless-return": "off",
+      "react/function-component-definition": "off",
       "react/prop-types": ["error", { "ignore": ["navigation"] }],
       "react/destructuring-assignment": "off",
       "prettier/prettier": "warn"

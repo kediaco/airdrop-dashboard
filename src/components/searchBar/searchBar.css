@@ -1,0 +1,40 @@
+.base {
+  background-color: #2f2f2f;
+  display: flex;
+  flex-direction: row;
+  border-radius: 12px;
+  width: 500px;
+  max-width: 50vw;
+  height: 40px;
+
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.search-bar {
+  background: none;
+  margin: auto;
+  color: white;
+  font-family: 'DM Mono', monospace;
+  font-size: 20px;
+  flex: 1;
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.magnifying-glass {
+  width: 24px;
+  height: 24px;
+  color: white;
+
+  margin: auto;
+  padding-right: 16px;
+}

@@ -1,5 +1,7 @@
+import LandingPage from './pages/landing/landing.tsx';
+
 function App() {
-  return <h1>Dashboard</h1>;
+  return <LandingPage />;
 }
 
 export default App;
