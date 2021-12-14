@@ -37,7 +37,7 @@
 
 .d--grid {
   margin-top: 48px;
-  padding: 0;
+  margin-bottom: 48px;
 }
 
 .d--card {
@@ -78,6 +78,7 @@
 
 .d--summary {
   margin-top: 5vh;
+  margin-left: 24px;
   background: #1c1c1c;
   width: 10vw;
   min-width: 200px;
@@ -115,4 +116,64 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.d--desktop {
+  display: flex;
+}
+
+.d--mobile {
+  display: none;
+}
+
+/* Mobile Phone CSS */
+@media screen and (max-width: 480px) {
+  .d--desktop {
+    display: none;
+  }
+
+  .d--mobile {
+    display: flex;
+  }
+
+  .d--page-base {
+    flex-direction: column;
+  }
+
+  .d--page-left {
+    width: 100%;
+  }
+
+  .d--page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .d--title {
+    font-size: 24px;
+  }
+
+  .d--summary {
+    margin-left: 0;
+    width: 100%;
+    min-width: none;
+
+    box-sizing: border-box;
+  }
+
+  .d--summary--title {
+    display: none;
+  }
+
+  .d--summary--caption {
+    display: none;
+  }
+
+  .d--card--title {
+    font-size: 18px;
+  }
+
+  .d--card--body {
+    font-size: 16px;
+  }
 }

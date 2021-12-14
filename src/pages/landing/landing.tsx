@@ -11,7 +11,7 @@ export default function LandingPage() {
           <span className="la--title-evmos">Evmos </span>Airdrops
         </h3>
         <div className="la--search">
-          <SearchBar placeholderText="Enter your Evmos hex or bec32 address" />
+          <SearchBar placeholderText="Evmos address" />
           <button className="la--button" type="submit">
             <img src={arrowright} alt="Arrow Right" />
           </button>

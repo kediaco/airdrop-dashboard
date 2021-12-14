@@ -10,20 +10,35 @@ const GridLayout = require('react-grid-layout');
 
 const ResponsiveGridLayout = GridLayout.WidthProvider(GridLayout.Responsive);
 
-function DashboardGrid() {
-  const keys = ['a', 'b', 'c'];
-  const defaultLayout = [
-    {i: 'a', x: 0, y: 0, w: 4, h: 2, static: true},
-    {i: 'b', x: 4, y: 0, w: 4, h: 2, static: true},
-    {i: 'c', x: 8, y: 0, w: 4, h: 2, static: true},
-  ];
-  const layout = {
+/// Helper
+const getLayoutForKeys = (keys: string[]) => {
+  const createLayout = (numItemsPerRow: number) => {
+    return keys.map((key, index) => ({
+      i: key,
+      x: (index % numItemsPerRow) * 4,
+      y: Math.floor(index / numItemsPerRow) * 2,
+      w: 4,
+      h: 2,
+      static: true,
+    }));
+  };
+
+  const defaultLayout = createLayout(3);
+  const smLayout = createLayout(2);
+  const xsLayout = createLayout(1);
+
+  return {
     lg: defaultLayout,
     md: defaultLayout,
-    sm: defaultLayout,
-    xs: defaultLayout,
-    xxs: defaultLayout,
+    sm: smLayout,
+    xs: xsLayout,
   };
+};
+
+function DashboardGrid() {
+  const keys = ['a', 'b', 'c', 'd'];
+
+  const layout = getLayoutForKeys(keys);
   return (
     <ResponsiveGridLayout
       className="layout d--grid"
@@ -35,7 +50,7 @@ function DashboardGrid() {
       {keys.map(key => (
         <div className="d--card" key={key}>
           <div>
-            <h3 className="d--card--title">Get Tacos from Taco Stand</h3>
+            <h3 className="d--card--title">{`Get Tacos from Taco Stand ${key}`}</h3>
             <div className="d--row">
               <div className="d--icon" style={{background: '#1CDC30'}} />
               <p className="d--card--body">Completed</p>
@@ -48,9 +63,10 @@ function DashboardGrid() {
   );
 }
 
-function DashboardSummary() {
+function DashboardSummary(props: any) {
+  const {isMobile} = props;
   return (
-    <div className="d--summary">
+    <div className={`d--summary ${isMobile ? 'd--mobile' : 'd--desktop'}`}>
       <h4 className="d--summary--title">Task List</h4>
       <div className="d--row">
         <div className="d--icon" style={{background: '#1CDC30'}} />
@@ -79,13 +95,13 @@ export default function DashboardPage() {
           <h3 className="la--title d--title">
             <span className="la--title-evmos">Evmos </span>Airdrop Rewards
           </h3>
-          <div className="d--icon" style={{background: '#1CDC30'}} />
-          <p className="d--subtitle">4/18</p>
+          <div className="d--row">
+            <div className="d--icon" style={{background: '#1CDC30'}} />
+            <p className="d--subtitle">4/18</p>
+          </div>
         </div>
-        <SearchBar
-          placeholderText="Enter your Evmos hex or bec32 address"
-          isLarge
-        />
+        <SearchBar placeholderText="0xMYADDRESS" isLarge />
+        <DashboardSummary isMobile />
         <DashboardGrid />
       </div>
       <DashboardSummary />
