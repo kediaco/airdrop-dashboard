@@ -3,10 +3,10 @@ import './searchBar.css';
 import magnifyingglass from '../../images/magnifyingglass.svg';
 
 export default function SearchBar(props: any) {
-  const {placeholderText} = props;
+  const {placeholderText, isLarge} = props;
 
   return (
-    <div className="base">
+    <div className={`base ${isLarge && 'base-large'}`}>
       <img
         className="magnifying-glass"
         src={magnifyingglass}
