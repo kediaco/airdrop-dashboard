@@ -6,6 +6,8 @@ import '../../../node_modules/react-grid-layout/css/styles.css';
 import '../../../node_modules/react-resizable/css/styles.css';
 import SearchBar from 'src/components/searchBar/searchBar';
 
+import MissionData from '../../assets/missiondata';
+
 const GridLayout = require('react-grid-layout');
 
 const ResponsiveGridLayout = GridLayout.WidthProvider(GridLayout.Responsive);
@@ -35,28 +37,44 @@ const getLayoutForKeys = (keys: string[]) => {
   };
 };
 
-function DashboardGrid() {
-  const keys = ['a', 'b', 'c', 'd'];
+function DashboardGrid(props: any) {
+  const {userMissions} = props;
+  const allMissions = Object.values(MissionData).flatMap(array => array);
+  const keys = allMissions.map(mission => mission.id.toString());
 
   const layout = getLayoutForKeys(keys);
+
+  const statusForCard = (id: number, totalPoints: number) => {
+    if (userMissions.includes(id)) {
+      return (
+        <>
+          <div className="d--icon" style={{background: '#1CDC30'}} />
+          <p className="d--card--body">Completed</p>
+        </>
+      );
+    }
+    return (
+      <>
+        <div className="d--icon" style={{background: '#F8A933'}} />
+        <p className="d--card--body">Incomplete</p>
+      </>
+    );
+  };
+
   return (
     <ResponsiveGridLayout
       className="layout d--grid"
       containerPadding={[0, 0]}
       layouts={layout}
       breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480}}
-      cols={{lg: 12, md: 12, sm: 8, xs: 4}}
-      rowHeight={100}>
-      {keys.map(key => (
-        <div className="d--card" key={key}>
-          <div>
-            <h3 className="d--card--title">{`Get Tacos from Taco Stand ${key}`}</h3>
-            <div className="d--row">
-              <div className="d--icon" style={{background: '#1CDC30'}} />
-              <p className="d--card--body">Completed</p>
-            </div>
+      cols={{lg: 12, md: 12, sm: 8, xs: 4}}>
+      {allMissions.map(mission => (
+        <div className="d--card" key={mission.id}>
+          <h3 className="d--card--title">{mission.task}</h3>
+          <div className="d--row">
+            {statusForCard(mission.id, mission.points)}
           </div>
-          <p className="d--card--body">December 9 at 4:45PM EST</p>
+          <p className="d--card--body">{`${mission.points} pts`}</p>
         </div>
       ))}
     </ResponsiveGridLayout>
@@ -64,30 +82,47 @@ function DashboardGrid() {
 }
 
 function DashboardSummary(props: any) {
-  const {isMobile} = props;
+  const {isMobile, userPoints, numComplete, numIncomplete} = props;
+  const dateLastUpdated = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+    hour: 'numeric',
+    minute: 'numeric',
+  });
   return (
     <div className={`d--summary ${isMobile ? 'd--mobile' : 'd--desktop'}`}>
-      <h4 className="d--summary--title">Task List</h4>
+      <h4 className="d--summary--title">Status</h4>
       <div className="d--row">
-        <div className="d--icon" style={{background: '#1CDC30'}} />
-        <p className="d--summary--body">Subtask</p>
+        <p className="d--summary--body">{`${userPoints} Pts`}</p>
       </div>
       <div className="d--row">
         <div className="d--icon" style={{background: '#1CDC30'}} />
-        <p className="d--summary--body">Subtask</p>
+        <p className="d--summary--body">{`${numComplete} Complete`}</p>
       </div>
       <div className="d--row">
-        <div className="d--icon" style={{background: '#1CDC30'}} />
-        <p className="d--summary--body">Subtask</p>
+        <div className="d--icon" style={{background: '#F8A933'}} />
+        <p className="d--summary--body">{`${numIncomplete} Incomplete`}</p>
       </div>
-      <p className="d--summary--caption">
-        Last refreshed December 9 at 4:50 PM EST.
-      </p>
+      <p className="d--summary--caption">{`Last updated ${dateLastUpdated}.`}</p>
     </div>
   );
 }
 
-export default function DashboardPage() {
+export default function DashboardPage(props: any) {
+  const {userAddress, userMissions} = props;
+  const totalNumMissions = Object.values(MissionData)
+    .map(array => array.length)
+    .reduce((a, b) => a + b);
+  const numComplete = userMissions.length;
+  const numIncomplete = totalNumMissions - numComplete;
+
+  const userPoints = Object.values(MissionData)
+    .flatMap(array => array)
+    .filter(mission => userMissions.includes(mission.id))
+    .map(mission => mission.points)
+    .reduce((a, b) => a + b);
+
   return (
     <div className="page-base d--page-base">
       <div className="d--page-left">
@@ -97,14 +132,23 @@ export default function DashboardPage() {
           </h3>
           <div className="d--row">
             <div className="d--icon" style={{background: '#1CDC30'}} />
-            <p className="d--subtitle">4/18</p>
+            <p className="d--subtitle">{`${userMissions.length}/${totalNumMissions}`}</p>
           </div>
         </div>
-        <SearchBar placeholderText="0xMYADDRESS" isLarge />
-        <DashboardSummary isMobile />
-        <DashboardGrid />
+        <SearchBar placeholderText={userAddress} isLarge />
+        <DashboardSummary
+          isMobile
+          userPoints={userPoints}
+          numComplete={numComplete}
+          numIncomplete={numIncomplete}
+        />
+        <DashboardGrid userMissions={userMissions} />
       </div>
-      <DashboardSummary />
+      <DashboardSummary
+        userPoints={userPoints}
+        numComplete={numComplete}
+        numIncomplete={numIncomplete}
+      />
     </div>
   );
 }
