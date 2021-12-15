@@ -27,4 +27,4 @@ jobs:
           git config --global user.name "Hanchon"
           git add -A
           git commit -m "Build"
-          git push -f https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/tharsis/airdrop-dashboard-frontend.git master:gh-pages
+          git push -f https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/hanchon/testnetrewards.git master:gh-pages
