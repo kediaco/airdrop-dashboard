@@ -21,6 +21,7 @@ jobs:
           yarn install
           yarn build
           cd build
+          echo "rewards.evmos.me" > CNAME
           touch .nojekyll
           git init
           git config --global user.email "guillermo.paoletti@gmail.com"
