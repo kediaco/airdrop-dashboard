@@ -17,7 +17,7 @@ function App() {
           setPage(1);
 
           // Fetch Data (Dummy)
-          fetch('http://api.hanchon.live/user_missions/wallet0')
+          fetch(`https://api.hanchon.live/user_missions/${address}`)
             .then(response => response.json())
             .then(data => {
               console.log(data);
