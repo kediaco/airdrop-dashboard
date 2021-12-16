@@ -96,7 +96,7 @@ function DashboardSummary(props: any) {
     <div className={`d--summary ${isMobile ? 'd--mobile' : 'd--desktop'}`}>
       <h4 className="d--summary--title">Status</h4>
       <div className="d--row">
-        <p className="d--summary--body">{`${userPoints} Pts`}</p>
+        <p className="d--summary--subtitle">{`${userPoints} points`}</p>
       </div>
       <div className="d--row">
         <div className="d--icon" style={{background: '#1CDC30'}} />

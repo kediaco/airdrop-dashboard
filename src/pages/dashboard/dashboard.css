@@ -100,6 +100,12 @@
   font-weight: 400;
 }
 
+.d--summary--subtitle {
+  color: white;
+  font-size: 18px;
+  font-weight: 375;
+}
+
 .d--summary--body {
   color: white;
   font-size: 18px;
