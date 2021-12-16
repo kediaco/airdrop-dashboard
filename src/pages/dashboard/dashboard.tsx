@@ -6,6 +6,8 @@ import '../../../node_modules/react-grid-layout/css/styles.css';
 import '../../../node_modules/react-resizable/css/styles.css';
 import SearchBar from 'src/components/searchBar/searchBar';
 
+import arrowright from '../../images/arrowright.svg';
+
 import MissionData from '../../assets/missiondata';
 
 const GridLayout = require('react-grid-layout');
@@ -110,7 +112,7 @@ function DashboardSummary(props: any) {
 }
 
 export default function DashboardPage(props: any) {
-  const {userAddress, userMissions} = props;
+  const {userAddress, userMissions, searchForWallet} = props;
   const totalNumMissions = Object.values(MissionData)
     .map(array => array.length)
     .reduce((a, b) => a + b);
@@ -121,7 +123,15 @@ export default function DashboardPage(props: any) {
     .flatMap(array => array)
     .filter(mission => userMissions.includes(mission.id))
     .map(mission => mission.points)
-    .reduce((a, b) => a + b);
+    .reduce((a, b) => a + b, 0);
+
+  // Search at new address
+  const submitRequest = (event: any) => {
+    event.preventDefault();
+
+    const address = event.target[0].value ?? '';
+    searchForWallet(address);
+  };
 
   return (
     <div className="page-base d--page-base">
@@ -135,7 +145,14 @@ export default function DashboardPage(props: any) {
             <p className="d--subtitle">{`${userMissions.length}/${totalNumMissions}`}</p>
           </div>
         </div>
-        <SearchBar placeholderText={userAddress} isLarge />
+        <form onSubmit={submitRequest}>
+          <div className="la--search">
+            <SearchBar placeholderText={userAddress} isLarge />
+            <button className="la--button" type="submit">
+              <img src={arrowright} alt="Arrow Right" />
+            </button>
+          </div>
+        </form>
         <DashboardSummary
           isMobile
           userPoints={userPoints}
