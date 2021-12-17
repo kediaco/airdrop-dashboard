@@ -41,7 +41,9 @@ const getLayoutForKeys = (keys: string[]) => {
 
 function DashboardGrid(props: any) {
   const {userMissions} = props;
-  const allMissions = Object.values(MissionData).flatMap(array => array);
+  const allMissions = Object.values(MissionData).flatMap((array, index) =>
+    array.map(val => ({...val, missionId: index + 1})),
+  );
   const keys = allMissions.map(mission => mission.id.toString());
 
   const layout = getLayoutForKeys(keys);
@@ -76,7 +78,7 @@ function DashboardGrid(props: any) {
           <div className="d--row">
             {statusForCard(mission.id, mission.points)}
           </div>
-          <p className="d--card--body">{`${mission.points} pts`}</p>
+          <p className="d--card--body">{`M${mission.missionId} · ${mission.points} pts`}</p>
         </div>
       ))}
     </ResponsiveGridLayout>
@@ -118,6 +120,12 @@ export default function DashboardPage(props: any) {
     .reduce((a, b) => a + b);
   const numComplete = userMissions.length;
   const numIncomplete = totalNumMissions - numComplete;
+
+  // Add to leaderboard
+  // const totalNumPoints = Object.values(MissionData)
+  //   .flatMap(array => array)
+  //   .map(mission => mission.points)
+  //   .reduce((a, b) => a + b);
 
   const userPoints = Object.values(MissionData)
     .flatMap(array => array)

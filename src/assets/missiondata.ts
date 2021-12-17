@@ -94,6 +94,67 @@ const MissionData = {
       4,
     ),
   ],
+  mission2: [
+    generateMission(14, 'Build a wallet', 50, 1),
+    generateMission(
+      15,
+      'Build and host a UI for a verified smart contract',
+      50,
+      1,
+    ),
+    generateMission(
+      16,
+      'Build a dashboard or block explorer with all of the following parameters represented: validator status and staking information, governance parameters, common chain metrics like: block height, tps, block and tx indexing',
+      30,
+      2,
+    ),
+    generateMission(17, 'Build a tx tracer', 30, 2),
+    generateMission(
+      18,
+      'Build and host a UI that represent gas usage and fees across the network',
+      20,
+      2,
+    ),
+    generateMission(
+      19,
+      'Helping to close one or more significant issues in repos for the following projects: https://bit.ly/3D1VKGN',
+      20,
+      3,
+    ),
+    generateMission(
+      20,
+      'Build tools that aid in indexing, e.g. Ethereum ETL',
+      50,
+      4,
+    ),
+    generateMission(
+      21,
+      'Build tools for interacting with validators directly, e.g. mev-geth',
+      50,
+      4,
+    ),
+  ],
+  mission3: [
+    generateMission(22, 'Critical vulnerability', 150, 1),
+    generateMission(23, 'High severity bug', 75, 1),
+    generateMission(24, 'Medium severity bug', 50, 1),
+    generateMission(25, 'Log severity bug', 10, 1),
+    generateMission(26, 'Informational finding', 5, 1),
+    generateMission(27, 'Submit a ≥10% performance improvement', 50, 2),
+    generateMission(28, 'Submit a ≥5% performance improvement', 20, 2),
+    generateMission(
+      29,
+      'Document and share proof of an on-chain tx-ordering exploit originating from a registered address',
+      50,
+      3,
+    ),
+    generateMission(
+      30,
+      'Document a potential attack on the networking or p2p layer that would result in an advantage in capturing MEV',
+      30,
+      3,
+    ),
+  ],
 };
 
 export default MissionData;
