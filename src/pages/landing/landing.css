@@ -1,26 +1,30 @@
-.la--title {
-  margin-top: -15vh;
-  font-size: 36px;
-  font-weight: 300;
-  text-align: center;
-  color: white;
+.la--base {
+  background-image: url('../../images/background.svg');
+  background-position: center;
+  background-size: cover;
 }
 
-.la--title-evmos {
-  font-weight: 450;
+.la--logo {
+  margin-top: 12.5vh;
+  margin-bottom: 96px;
+}
+
+.la--title {
+  margin-bottom: 36px;
 }
 
 .la--search {
+  margin-top: 48px;
   display: flex;
   flex-direction: row;
 }
 
 .la--button {
-  background: #424242;
+  background: #eb3312;
   border: none;
   width: 64px;
 
-  margin-left: 24px;
-  border-radius: 12px;
+  margin-left: 0px;
+  border-radius: 4px;
   cursor: pointer;
 }
