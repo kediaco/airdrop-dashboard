@@ -162,6 +162,37 @@
   display: none;
 }
 
+/* Tablet CSS */
+@media screen and (max-width: 1024px) {
+  .d--header-title {
+    margin-left: 36px;
+    margin-bottom: -4px;
+    height: 20px;
+  }
+
+  .d--header-subtitle {
+    margin-left: 12px;
+    margin-bottom: -4px;
+    height: 20px;
+  }
+
+  .d--header-search {
+    width: auto;
+  }
+
+  .d--title {
+    font-size: 24px;
+  }
+
+  .d--subtitle {
+    font-size: 24px;
+  }
+
+  .d--caption {
+    margin-top: 0px;
+  }
+}
+
 /* Mobile Phone CSS */
 @media screen and (max-width: 480px) {
   .d--desktop {
@@ -176,8 +207,8 @@
     flex-direction: column;
   }
 
-  .d--page-left {
-    width: 100%;
+  .d--page-top {
+    padding-bottom: 72px;
   }
 
   .d--page-header {
@@ -185,24 +216,46 @@
     align-items: flex-start;
   }
 
-  .d--title {
-    font-size: 24px;
-  }
-
-  .d--summary {
-    margin-left: 0;
+  .d--page-header-mobile {
+    justify-content: space-between;
     width: 100%;
-    min-width: none;
-
-    box-sizing: border-box;
   }
 
-  .d--summary--title {
-    display: none;
+  .d--header-logo {
+    width: 22.5vw;
+    margin-right: 24px;
   }
 
-  .d--summary--caption {
-    display: none;
+  .d--header-title {
+    margin: auto;
+    width: 25vw;
+  }
+
+  .d--header-subtitle {
+    margin: auto;
+    width: 22.5vw;
+  }
+
+  .d--header-search {
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .d--title-container {
+    margin-top: 12px;
+  }
+
+  .d--subtitle {
+    font-size: 16px;
+  }
+
+  .d--caption {
+    font-size: 14px;
+    width: 60vw;
+  }
+
+  .d--grid {
+    margin: 12px auto 24px auto;
   }
 
   .d--card--title {

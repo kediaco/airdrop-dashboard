@@ -21,7 +21,7 @@ export default function LandingPage(props: any) {
         <div className="page-body">
           <img src={logo} alt="Evmos" className="la--logo" />
           <img src={rektdrop} alt="Rektdrop" className="la--title" />
-          <img src={rewards} alt="Rewards" />
+          <img src={rewards} alt="Rewards" className="la--subtitle" />
           <div className="la--search">
             <SearchBar placeholderText="Enter your Evmos hex or bec32 address" />
             <button className="la--button" type="submit">

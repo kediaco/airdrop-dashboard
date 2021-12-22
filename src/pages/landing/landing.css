@@ -28,3 +28,20 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+/* Mobile Phone CSS */
+@media screen and (max-width: 480px) {
+  .la--logo {
+    width: 40vw;
+    margin-bottom: 72px;
+  }
+
+  .la--title {
+    width: 85vw;
+    margin-bottom: 24px;
+  }
+
+  .la--subtitle {
+    width: 50vw;
+  }
+}

@@ -133,7 +133,7 @@ export default function DashboardPage(props: any) {
     <div className="page-base d--page-base">
       <div className="d--page-top">
         <div className="d--page-header">
-          <div>
+          <div className="d--row d--page-header-mobile">
             <img src={logo} alt="Evmos" className="d--header-logo" />
             <img src={rektdrop} alt="Rektdrop" className="d--header-title" />
             <img src={rewards} alt="Rewards" className="d--header-subtitle" />
@@ -149,7 +149,7 @@ export default function DashboardPage(props: any) {
         </div>
         <div className="d--title-container">
           <div className="d--col" style={{flex: 1}}>
-            <h3 className="d--title">{userAddress}</h3>
+            <h3 className="d--title d--desktop">{userAddress}</h3>
             <p className="d--caption">{`Last Updated – ${dateLastUpdated}`}</p>
           </div>
           <h3 className="d--subtitle">{`${numComplete}/${totalNumMissions}`}</h3>

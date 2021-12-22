@@ -45,9 +45,4 @@
   .search-bar {
     font-size: 16px;
   }
-
-  .base-large {
-    /* 88px is width of search button + margin */
-    width: calc(100% - 88px);
-  }
 }
